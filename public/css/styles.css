@@ -4,3 +4,131 @@
 *:after {
   box-sizing: border-box;
 }
+
+.siteName {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.siteName a, #tools a {
+  text-decoration: none;
+}
+
+.welcome {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 30px;
+  margin:0%;
+  height: 40px;
+  font-size: 18px;
+  background-color: rgb(51, 51, 51);
+  list-style: none;
+  text-decoration: none;
+}
+
+.navigation a:hover {
+  color: #d20000;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+}
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#hero-button {
+  background-color: #d20000;
+}
+
+.hero-image {
+  background-image: url("../images/vehicles/delorean.jpg");
+    height: 41vh;
+    /* background-size: cover; */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-text {
+  display: inline-block;
+  padding: 10px;
+  margin: 30px;
+  background-color:rgba(225, 0, 0, 0.2);
+  /*  #d20000,  */
+}
+
+.upgrades-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;   
+  padding: 20px;
+}
+
+.upgrade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 2px solid black;
+  background-color: aquamarine;
+  padding: 10px;
+}
+
+.upgrade a:hover {
+  text-decoration: dotted;
+  color: #d20000;
+}
+
+.upgrade img {
+  border-radius: 8px;
+  margin-bottom: 10px;
+
+}
+
+/* min-width: 45.5em */
+@media (min-width: 45.5em) {
+  body {
+    background-image: url("../images/site/checkerboard.jpg"); 
+}
+
+  #wrapper {
+    max-width: 800px;     
+    margin: 20px auto;
+    background-color: white; 
+    border: 3px solid #d20000;  
+    border-radius: 8px;      
+    padding: 20px;         
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+}
+
+  .big-screen-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 35px;
+    align-items: start;
+}
+
+  .big-screen-grid > h3 { grid-column: 2; grid-row: 1; 
+}
+
+  .big-screen-grid > ul { grid-column: 2; grid-row: 2; 
+}
+
+  .big-screen-grid > h2 { grid-column: 1; grid-row: 1; 
+}
+
+  .big-screen-grid > .upgrades-section { grid-column: 1; grid-row: 2; 
+} 
+
+}
