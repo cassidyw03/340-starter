@@ -46,6 +46,9 @@
 
 #hero-button {
   background-color: #d20000;
+  color: white;
+  font-size: 15px;
+  margin-top: 10px;
 }
 
 .hero-image {
@@ -60,7 +63,7 @@
   display: inline-block;
   padding: 10px;
   margin: 30px;
-  background-color:rgba(225, 0, 0, 0.2);
+  background-color:rgba(177, 90, 90, 0.3);
   /*  #d20000,  */
 }
 
