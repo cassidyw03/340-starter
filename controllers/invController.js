@@ -19,4 +19,21 @@ invCont.buildByClassificationId = async function (req, res, next) {
   })
 }
 
+invCont.buildVehicleDetail = async function (req, res, next) {
+  const inv_id = req.params.inv_id
+  const vehicle = await invModel.getVehicleById(inv_id)
+  const vehicleHTML = utilities.buildVehicleDetail(vehicle)
+  const nav = await utilities.getNav()
+
+  const title = vehicle ? `${vehicle.inv_make} ${vehicle.inv_model}` : "Vehicle Not Found"
+  res.render("./inventory/detail",  {
+    title, nav, vehicleHTML
+  })
+}
+
+// Intentional Error
+invCont.intentionalError = async function(req, res, next) {
+  throw new Error("Intentional 500 error triggered!")
+}
+
 module.exports = invCont
