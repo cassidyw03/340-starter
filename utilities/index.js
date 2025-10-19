@@ -81,6 +81,7 @@ Util.buildVehicleDetail = function(vehicle) {
   return html
 }
 
+
 module.exports = Util
 
 

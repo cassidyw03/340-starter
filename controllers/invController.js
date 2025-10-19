@@ -19,6 +19,10 @@ invCont.buildByClassificationId = async function (req, res, next) {
   })
 }
 
+
+/* ***************************
+ *  Build inventory by vehicle detail view
+ * ************************** */
 invCont.buildVehicleDetail = async function (req, res, next) {
   const inv_id = req.params.inv_id
   const vehicle = await invModel.getVehicleById(inv_id)

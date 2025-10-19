@@ -103,6 +103,85 @@
   font-size: 20px;
 }
 
+/* Build Classification Grid CSS */
+#inv-display {
+  display: flex;
+  flex-direction: column;
+}
+
+#inv-display img {
+  border: 5px double black;
+  width: 100%;
+}
+
+#inv-display a {
+  text-decoration: none;
+}
+
+#inv-display a:hover {
+  text-decoration: none;
+  color: #d20000;
+}
+
+#inv-display li {
+  background-color: #e6e5e5;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 20px;
+}
+
+#inv-display li:hover {
+  transform: translateY(-5px);
+  transform: translateX(-5px);
+}
+
+.namePrice {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+/* Build Vehicle Detail CSS*/
+.vehicle-detail {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #e6e5e5;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.vehicle-detail h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.vehicle-detail img {
+  width: 100%;
+  /* max-height: 400px; */
+  /* object-fit: cover; */
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.vehicle-detail p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+}
+
+.notice {
+  text-align: center;
+  font-style: italic;
+  padding: 2rem;
+  color: #3b3b3b;
+}
+
 /* min-width: 45.5em */
 @media (min-width: 45.5em) {
   body {
@@ -138,5 +217,14 @@
 
   .big-screen-grid > .upgrades-section { grid-column: 1; grid-row: 2; 
 } 
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  list-style: none;
+  margin: 0;
+}
 
 }
