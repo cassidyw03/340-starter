@@ -1,0 +1,40 @@
+<!-- Content Heading -->
+ <% if (title) { %>
+<h1 class="registration"><%= title %></h1>
+<% } else { %>
+  <h1>Something went wrong.</h1>
+<% } %>
+
+<!-- Message Block (when needed) -->
+<% messages() %>
+
+<!-- Registration form -->
+ <form action="/account/registration" method="post">
+    <label for="fname">First Name:</label>
+    <input type="text" name="account_firstname" id="fname" required>
+
+    <label for="lname">Last Name:</label>
+    <input type="text" name="account_lastname" id="lname" required>
+
+    <label for="email">Email:</label>
+    <input type="email" name="account_email" id="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" name="account_password" id="password" required minlength="12" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.&lt;&gt;\/?]).{12,}$" title="Must be at least 12 characters lon, include one uppercase letter, one number, and one special character ">
+
+    <button type="submit">Register</button>
+ </form>
+
+<!-- Login form -->
+  <form action="/account/login" method="post">
+    <label for="email">Email:</label>
+    <input type="email" name="account_email" id="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" name="account_password" id="password" required>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <!-- Link to registration -->
+  <p class="noaccount">Don't have an account? <a href="/account/register">Sign-up here</a></p>
