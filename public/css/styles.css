@@ -255,7 +255,7 @@ form button:hover {
   text-decoration: underline;
 }
 
-.error-title, .login-title {
+.error-title, .login-title, .registration-title {
   text-align: center;
 }
 

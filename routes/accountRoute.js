@@ -8,6 +8,6 @@ const utilities = require("../utilities")
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 
 // Route to build the registration
-router.get("/register", utilities.handleErrors(accountController.buildLogin))
+router.get("/registration", utilities.handleErrors(accountController.buildRegistration))
 
 module.exports = router

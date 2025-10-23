@@ -1,6 +1,6 @@
 <!-- Content Heading -->
  <% if (title) { %>
-<h1 class="registration"><%= title %></h1>
+<h1 class="registration-title"><%= title %></h1>
 <% } else { %>
   <h1>Something went wrong.</h1>
 <% } %>
@@ -24,17 +24,6 @@
 
     <button type="submit">Register</button>
  </form>
-
-<!-- Login form -->
-  <form action="/account/login" method="post">
-    <label for="email">Email:</label>
-    <input type="email" name="account_email" id="email" required>
-
-    <label for="password">Password:</label>
-    <input type="password" name="account_password" id="password" required>
-
-    <button type="submit">Login</button>
-  </form>
 
   <!-- Link to registration -->
   <p class="noaccount">Don't have an account? <a href="/account/register">Sign-up here</a></p>
