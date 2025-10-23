@@ -9,7 +9,7 @@
 <% messages() %>
 
 <!-- Registration form -->
- <form action="/account/registration" method="post">
+ <form action="/account/register" method="post">
     <label for="fname">First Name:</label>
     <input type="text" name="account_firstname" id="fname" required>
 
@@ -20,10 +20,16 @@
     <input type="email" name="account_email" id="email" required>
 
     <label for="password">Password:</label>
-    <input type="password" name="account_password" id="password" required minlength="12" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.&lt;&gt;\/?]).{12,}$" title="Must be at least 12 characters lon, include one uppercase letter, one number, and one special character ">
+    <input type="password" name="account_password" id="password" required minlength="12" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.&lt;&gt;\/?]).{12,}$" title="Must be at least 12 characters long, include one uppercase letter, one number, and one special character ">
+
+      <small>
+    Password must be at least 12 characters long and include:
+    <ul>
+      <li>1 uppercase letter</li>
+      <li>1 number</li>
+      <li>1 special character</li>
+    </ul>
+  </small>
 
     <button type="submit">Register</button>
  </form>
-
-  <!-- Link to registration -->
-  <p class="noaccount">Don't have an account? <a href="/account/register">Sign-up here</a></p>
