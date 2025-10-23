@@ -180,6 +180,83 @@
   font-style: italic;
   padding: 2rem;
   color: #3b3b3b;
+  list-style-type: none;
+  text-decoration: underline;
+  text-decoration-color: #d20000;
+  text-underline-position: under;
+}
+
+/* Login Form Styling */
+form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #e6e5e5;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+form h1 {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+form input {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+form button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+.noaccount {
+  text-align: center;
+  margin-top: 1rem;
+  color: #333;
+}
+
+.noaccount a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.noaccount a:hover {
+  text-decoration: underline;
+}
+
+.error-title, .login-title {
+  text-align: center;
 }
 
 /* min-width: 45.5em */
