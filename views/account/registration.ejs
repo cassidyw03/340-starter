@@ -8,6 +8,14 @@
 <!-- Message Block (when needed) -->
 <% messages() %>
 
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
 <!-- Registration form -->
  <form action="/account/register" method="post">
     <label for="fname">First Name:</label>
@@ -17,19 +25,19 @@
     <input type="text" name="account_lastname" id="lname" required>
 
     <label for="email">Email:</label>
-    <input type="email" name="account_email" id="email" required>
+    <input type="email" name="account_email" id="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter a valid email address" title="Please enter a valid email address (example@domain.com)">
+
+     <small class="password-small">
+      *Password must be at least 12 characters long and include:
+      <ul>
+        <li>1 uppercase letter</li>
+        <li>1 number</li>
+        <li>1 special character</li>
+      </ul>
+    </small>
 
     <label for="password">Password:</label>
-    <input type="password" name="account_password" id="password" required minlength="12" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.&lt;&gt;\/?]).{12,}$" title="Must be at least 12 characters long, include one uppercase letter, one number, and one special character ">
-
-      <small>
-    Password must be at least 12 characters long and include:
-    <ul>
-      <li>1 uppercase letter</li>
-      <li>1 number</li>
-      <li>1 special character</li>
-    </ul>
-  </small>
+    <input type="password" name="account_password" id="password" required minlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" placeholder="Enter a valid password" title="Must be at least 12 characters long, include one uppercase letter, one number, and one special character">
 
     <button type="submit">Register</button>
  </form>

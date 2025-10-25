@@ -175,7 +175,7 @@
   margin: 0.5rem 0;
 }
 
-.notice {
+.notice, .flash-message{
   text-align: center;
   font-style: italic;
   padding: 2rem;
@@ -253,6 +253,19 @@ form button:hover {
 
 .noaccount a:hover {
   text-decoration: underline;
+}
+
+input:required:invalid, input:focus:invalid {
+ border-left: #d20000;
+}
+
+input:required:valid {
+ border-left: #21cd11;
+}
+
+.password-small {
+  font-weight: bold;
+
 }
 
 .error-title, .login-title, .registration-title {
