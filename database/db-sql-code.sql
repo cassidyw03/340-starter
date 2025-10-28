@@ -248,3 +248,5 @@ UPDATE inventory
 UPDATE inventory
 	SET inv_image = REPLACE (inv_image, '/images/', '/images/vehicles/'), 
 	inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
+
+-- route fixed in database in pgAdmin- double check when remaking the database that these links are correct 
