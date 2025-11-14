@@ -49,10 +49,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
-
-// To help images load correctly
-// app.use(express.static("public"))
+app.set("layout", "./layouts/layout") 
+// not at views root
 
 /************************
  * Routes

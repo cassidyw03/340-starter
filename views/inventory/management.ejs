@@ -1,0 +1,17 @@
+<!-- Content Heading -->
+ <% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<!-- Message Block (when needed) -->
+<!-- <% messages() %> -->
+
+<!-- Management Links Section -->
+<section id="management-links">
+  <ul>
+    <li><a href="/inv/add-classification">Add New Classification</a></li>
+    <li><a href="/inv/add-inventory">Add New Inventory Item</a></li>
+  </ul>
+</section>

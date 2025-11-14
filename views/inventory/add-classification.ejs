@@ -1,0 +1,21 @@
+<!-- Content Heading -->
+ <% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<!-- Message Block (when needed) -->
+<!-- <% messages() %> -->
+
+
+<!-- Add Classification Form -->
+<form action="/inv/add-classification" method="post">
+    <label for="classification_name">Classification Name:</label>
+    <input type="text" id="classification_name" name="classification_name" required placeholder="" pattern="^[A-Za-z0-9]+$" title="Name must contain only letters and numbers. Do not incldue spaces of special characters.">
+
+    <small class="classification-small">
+      *Classification name must only contain letters and numbers (no spaces or special characters are allowed).
+    </small>
+
+    <button type="submit">Add Classification</button>

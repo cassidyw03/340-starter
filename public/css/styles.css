@@ -256,16 +256,15 @@ form button:hover {
 }
 
 input:required:invalid, input:focus:invalid {
- border-left: #d20000;
+ border-left: 6px solid #d20000;
 }
 
 input:required:valid {
- border-left: #21cd11;
+ border-left: 6px solid #21cd11;
 }
 
-.password-small {
+.password-small, .classification-small {
   font-weight: bold;
-
 }
 
 .error-title, .login-title, .registration-title {
