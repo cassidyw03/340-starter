@@ -57,15 +57,9 @@ invCont.buildAddClassification = async function (req, res, next) {
   })
 }
 
-// invCont.buildAddInventory = async function (req, res, next) {
-//   // console.log("/test");
-//   const nav = await utilities.getNav()
-//   res.render("./inventory/add-inventory", {
-//     title: "Add New Inventory",
-//     nav
-  // })
-// }
-
+// /* ***************************
+//  *  Build the add inventory view
+//  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
   // console.log("/test");
     const nav = await utilities.getNav()
@@ -76,85 +70,6 @@ invCont.buildAddInventory = async function (req, res, next) {
       // classificationSelect
     })
 }
-
-
-
-
-// /* ***************************
-//  *  Build the add inventory view
-//  * ************************** */
-// invCont.buildAddInventory = async function (req, res, next) {
-//     const nav = await utilities.getNav()
-//     const classificationSelect = await utilities.buildClassificationList()
-//     res.render("./inventory/add-inventory", {
-//       title: "Add New Vehicle",
-//       nav,
-//       classificationSelect,
-//       errors: null,
-//       messages: req.flash("notice"),
-//       // default empty values so the form is sticky
-//       inv_make: "",
-//       inv_model: "",
-//       inv_year: "",
-//       inv_description: "",
-//       inv_image: "/images/vehicles/no-image.png",
-//       inv_thumbnail: "/images/vehicles/no-image-tn.png",
-//       inv_price: "",
-//       inv_miles: "",
-//       inv_color: "",
-//       classification_id: ""
-//     })
-// }
-
-/* ***************************
- *  Process Add Inventory submission
- * ************************** */
-// invCont.addInventory = async function (req, res, next) {
-//     const nav = await utilities.getNav()
-//     const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
-
-//     const addResult = await invModel.addInventoryItem(
-//       inv_make,
-//       inv_model,
-//       inv_year,
-//       inv_description,
-//       inv_image,
-//       inv_thumbnail,
-//       inv_price,
-//       inv_miles,
-//       inv_color,
-//       classification_id
-//     )
-
-//     if (addResult) {
-//       req.flash("notice", `The ${inv_make} ${inv_model} was successfully added.`)
-//       res.redirect("/inv/")
-//     } else {
-//       const classificationSelect = await utilities.buildClassificationList(classification_id)
-//       req.flash("notice", "Sorry, the addition failed.")
-//       res.status(501).render("inventory/add-inventory", {
-//         title: "Add New Vehicle",
-//         nav,
-//         classificationSelect,
-//         errors: null,
-//         messages: req.flash("notice"),
-//         inv_make,
-//         inv_model,
-//         inv_year,
-//         inv_description,
-//         inv_image,
-//         inv_thumbnail,
-//         inv_price,
-//         inv_miles,
-//         inv_color,
-//         classification_id
-//       })
-//     }
-// }
-
-
-
-
 
 // Intentional Error
 invCont.intentionalError = async function(req, res, next) {

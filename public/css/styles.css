@@ -207,7 +207,7 @@ form label {
   margin-bottom: 0.5rem;
 }
 
-form input {
+form input, form textarea {
   width: 100%;
   padding: 0.7rem;
   margin-bottom: 1.2rem;
@@ -217,7 +217,7 @@ form input {
   transition: border-color 0.2s;
 }
 
-form input:focus {
+form input:focus, form textarea:focus {
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
@@ -255,11 +255,11 @@ form button:hover {
   text-decoration: underline;
 }
 
-input:required:invalid, input:focus:invalid {
+input:required:invalid, input:focus:invalid, textarea:required:invalid {
  border-left: 6px solid #d20000;
 }
 
-input:required:valid {
+input:required:valid, textarea:required:valid {
  border-left: 6px solid #21cd11;
 }
 

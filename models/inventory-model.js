@@ -46,6 +46,7 @@ async function getVehicleById(inv_id) {
   }
 }
 
+// Data written to the inventory table within the database using a model-based function
 // async function addInventoryItem(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id) {
 //     const sql = `
 //       INSERT INTO public.inventory (

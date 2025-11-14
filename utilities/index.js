@@ -81,6 +81,7 @@ Util.buildVehicleDetail = function(vehicle) {
   return html
 }
 
+// COPIED FROM ASSIGNMENT DOUBLE CHECK
 // Util.buildClassificationList = async function (classification_id = null) {
 //     let data = await invModel.getClassifications()
 //     let classificationList =
