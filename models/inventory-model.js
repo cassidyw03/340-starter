@@ -46,7 +46,24 @@ async function getVehicleById(inv_id) {
   }
 }
 
-// Data written to the inventory table within the database using a model-based function
+/* *************************************************
+ *  Add a new classification
+ * ************************************************* */
+async function addClassification(classification_name) {
+  try {
+    const result = await pool.query(
+      `INSERT INTO public.classification (classification_name)
+       VALUES ($1)
+       RETURNING *`,
+      [classification_name]
+    )
+    return result.rows[0]
+  } catch (error) {
+    console.error("addClassification error:", error)
+    throw error
+  }
+}
+
 /* *************************************************
  *  Add a new inventory item to the database
  * ************************************************* */
@@ -102,6 +119,6 @@ async function addInventory(
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getVehicleById, addInventory};
+module.exports = {getClassifications, getInventoryByClassificationId, getVehicleById, addInventory, addClassification};
 
 

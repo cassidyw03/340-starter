@@ -13,7 +13,11 @@ router.get("/detail/:inv_id", utilities.handleErrors(invController.buildVehicleD
 // Route to build management view route
 router.get("/", utilities.handleErrors(invController.buildManagementView))
 
+// Route to build the classification page
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
+
+// Route for add classification form submission
+router.post("/add-classification", utilities.handleErrors(invController.addClassification))
 
 // Route to build the add inventory page
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))

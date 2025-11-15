@@ -8,6 +8,11 @@
 <!-- Message Block (when needed) -->
 <!-- <% messages() %> -->
 
+<% if (message && message.length > 0) { %>
+  <div class="flash-message">
+    <%= message[0] %>
+  </div>
+<% } %>
 
 <!-- Add Classification Form -->
 <form action="/inv/add-classification" method="post">

@@ -43,7 +43,7 @@ invCont.buildManagementView = async function (req, res, next) {
   const message = req.flash("notice")
   res.render("./inventory/management", {
     title: "Inventory Management",
-    nav,
+    nav, 
     message
   })
 } 
@@ -57,6 +57,42 @@ invCont.buildAddClassification = async function (req, res, next) {
     title: "Add New Classification",
     nav
   })
+}
+
+/* ***************************
+ *  Process add classification
+ * ************************** */
+invCont.addClassification = async function (req, res, next) {
+  const { classification_name } = req.body
+
+  try {
+    const newClass = await invModel.addClassification(classification_name)
+
+    if (newClass) {
+      const nav = await utilities.getNav()
+
+      req.flash("notice", `Success! The ${classification_name} classification was added.`)
+
+      return res.redirect("/inv/")
+    } else {
+      const nav = await utilities.getNav()
+      return res.status(400).render("./inventory/add-classification", {
+        title: "Add New Classification",
+        nav,
+        message: "Sorry, the classification could not be added.",
+        classification_name
+      })
+    }
+  } catch (error) {
+    console.error("addClassification controller error:", error)
+    const nav = await utilities.getNav()
+    return res.status(500).render("./inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      message: "An error occurred while adding the classification.",
+      classification_name
+    })
+  }
 }
 
 // /* ***************************
