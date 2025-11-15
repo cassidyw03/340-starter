@@ -19,7 +19,7 @@ router.get("/add-classification", utilities.handleErrors(invController.buildAddC
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
 
 // Route for add inventory form submission
-// router.post("/add-inventory", utilities.handleErrors(invController.addInventory))
+router.post("/add-inventory", utilities.handleErrors(invController.addInventory))
 
 
 // Intentional 500 error route!
