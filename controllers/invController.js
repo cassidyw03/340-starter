@@ -40,9 +40,11 @@ invCont.buildVehicleDetail = async function (req, res, next) {
  * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
   const nav = await utilities.getNav()
+  const message = req.flash("notice")
   res.render("./inventory/management", {
     title: "Inventory Management",
-    nav
+    nav,
+    message
   })
 } 
 
@@ -83,7 +85,6 @@ invCont.buildAddInventory = async function (req, res, next) {
  *  Process add inventory
  * ************************** */
 invCont.addInventory = async function (req, res, next) {
-  // Destructure form data
   let {
     classification_id,
     inv_make,
@@ -97,7 +98,6 @@ invCont.addInventory = async function (req, res, next) {
     inv_color
   } = req.body
 
-  // Parse numeric fields
   inv_year = parseInt(inv_year, 10)
   inv_price = parseFloat(inv_price)
   inv_miles = parseInt(inv_miles, 10)
@@ -123,7 +123,7 @@ invCont.addInventory = async function (req, res, next) {
         "notice",
         `Success! The ${inv_make} ${inv_model} was added to inventory.`
       )
-      return res.redirect("/inv/") // Go to inventory management view
+      return res.redirect("/inv/")
     }
 
     // If insertion failed but no exception

@@ -8,6 +8,13 @@
 <!-- Message Block (when needed) -->
 <!-- <% messages() %> -->
 
+<% if (message && message.length > 0) { %>
+  <div class="flash-message">
+    <%= message[0] %>
+  </div>
+<% } %>
+
+
 <!-- Management Links Section -->
 <section id="management-links">
   <ul>
