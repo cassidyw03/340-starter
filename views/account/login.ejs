@@ -6,13 +6,7 @@
 <% } %>
 
 <!-- Message Block (when needed) -->
-<!-- <% messages() %> -->
-
-<% if (notice && notice.length > 0) { %>
-  <div class="flash-message">
-    <p><%= notice %></p>
-  </div>
-<% } %>
+<!-- <% messages('notice') %> -->
 
 <!-- Login form -->
   <form action="/account/login" method="post">
