@@ -14,6 +14,12 @@
   </div>
 <% } %>
 
+<p>Select a classification from the list to see the items in that classification.</p>
+
+<%- classificationSelect %>
+
+<table id="inventoryDisplay"></table>
+<noscript>JavaScript must be enabled to use this page.</noscript>
 
 <!-- Management Links Section -->
 <section id="management-links">
@@ -22,3 +28,5 @@
     <li><a href="/inv/add-inventory">Add New Inventory Item</a></li>
   </ul>
 </section>
+
+<script src="../../js/inventory.js"></script>

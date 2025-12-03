@@ -271,6 +271,28 @@ input:required:valid, textarea:required:valid {
   text-align: center;
 }
 
+/* Select Inventory Table Styling */
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  border: 1px solid #bcbcbc;
+  padding: 8px;
+}
+
+#inventoryDisplay thead {
+  background-color: #eee;
+  font-weight: bold;
+}
+/* Zebra striping: every even table row */
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #eee;
+}
+
 /* min-width: 45.5em */
 @media (min-width: 45.5em) {
   body {

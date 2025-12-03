@@ -33,6 +33,8 @@ router.post("/add-inventory",
     invValidation.checkInventoryData,
     utilities.handleErrors(invController.addInventory))
 
+// Route for select inventory items (getInventory) for URL in inventory.js
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
 // Intentional 500 error route!
 router.get("/cause-error", invController.intentionalError)
