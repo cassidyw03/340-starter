@@ -36,6 +36,10 @@ router.post("/add-inventory",
 // Route for select inventory items (getInventory) for URL in inventory.js
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+// Route to deliver the edit inventory view
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory));
+
+
 // Intentional 500 error route!
 router.get("/cause-error", invController.intentionalError)
 

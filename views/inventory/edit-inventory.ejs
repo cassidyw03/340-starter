@@ -8,8 +8,8 @@
 <!-- Message Block (when needed) -->
 <% messages() %>
 
-<!-- Add Inventory Form -->
-  <form action="/inv/add-inventory" method="post" id="addInventoryForm">
+<!-- Edit Inventory Form -->
+  <form action="/inv/update" method="post" id="addInventoryForm">
     <label for="inv_make">Make:</label>
     <input type="text" id="inv_make" name="inv_make" value="<%= locals.inv_make %>" required>
 
@@ -41,7 +41,7 @@
     <%- classificationList %>
     
 
-    <button type="submit">Add Inventory Item</button>
+    <button type="submit">Update Vehicle</button>
   </form>
 
 
