@@ -37,7 +37,13 @@ router.post("/add-inventory",
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
 // Route to deliver the edit inventory view
-router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory));
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+
+// ROute to devlier update inventory view
+router.post("/update/", 
+    invValidation.inventoryRules,
+    invValidation.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory))
 
 
 // Intentional 500 error route!
