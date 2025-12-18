@@ -8,7 +8,7 @@ const regValidate = require('../utilities/account-validation')
 // Route to account management route (after successful login)
 router.get(
   "/",
-  utilities.checkJWTToken,
+  // utilities.checkJWTToken,
   utilities.handleErrors(accountController.buildAccountManagement)
 )
 

@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const reviewModel = require("../models/review-model");
 
 const invCont = {}
 
@@ -258,6 +259,24 @@ invCont.updateInventory = async function (req, res, next) {
     classification_id
     })
   }
+}
+
+/* ***************************
+ * Build Detail View
+ * ************************** */
+async function buildDetailView(req, res) {
+  const inv_id = req.params.inv_id;
+
+  const vehicle = await inventoryModel.getInventoryById(inv_id);
+  const reviews = await reviewModel.getReviewsByInventoryId(inv_id);
+
+  res.render("inventory/detail", {
+    title: vehicle.inv_make + " " + vehicle.inv_model,
+    vehicle,
+    reviews,
+    loggedIn: res.locals.loggedin,
+    accountData: res.locals.accountData
+  });
 }
 
 // Intentional Error

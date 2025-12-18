@@ -7,42 +7,54 @@ const invValidation = require("../utilities/inventory-validation")
 
 
 // Route to build inventory by classification
-router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId))
+router.get("/type/:classificationId",
+    utilities.handleErrors(invController.buildByClassificationId))
 
 // Route to build vehicle detail route
 router.get("/detail/:inv_id", utilities.handleErrors(invController.buildVehicleDetail))
 
 // Route to build management view route
-router.get("/", utilities.handleErrors(invController.buildManagementView))
+router.get("/", utilities.handleErrors,
+    utilities.requireEmployeeOrAdmin,
+    utilities.handleErrors(invController.buildManagementView))
 
 // Route to build the classification page
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
+router.get("/add-classification", 
+    utilities.requireEmployeeOrAdmin,
+    utilities.handleErrors(invController.buildAddClassification))
 
 // Route for add classification form submission
 router.post("/add-classification", 
     invValidation.classificationRules(), 
     invValidation.checkClassificationData, 
+    utilities.requireEmployeeOrAdmin,
     utilities.handleErrors(invController.addClassification))
 
 // Route to build the add inventory page
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
+router.get("/add-inventory", 
+    utilities.requireEmployeeOrAdmin,
+    utilities.handleErrors(invController.buildAddInventory))
 
 // Route for add inventory form submission
 router.post("/add-inventory", 
     invValidation.inventoryRules(),
     invValidation.checkInventoryData,
+    utilities.requireEmployeeOrAdmin,
     utilities.handleErrors(invController.addInventory))
 
 // Route for select inventory items (getInventory) for URL in inventory.js
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
 // Route to deliver the edit inventory view
-router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+router.get("/edit/:inv_id", 
+    utilities.requireEmployeeOrAdmin,
+    utilities.handleErrors(invController.buildEditInventory))
 
 // Route to devlier update inventory view
 router.post("/update/", 
-    invValidation.inventoryRules,
+    invValidation.inventoryRules(),
     invValidation.checkUpdateData,
+    utilities.requireEmployeeOrAdmin,
     utilities.handleErrors(invController.updateInventory))
 
 

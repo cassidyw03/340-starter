@@ -106,26 +106,26 @@ Util.buildClassificationList = async function (classification_id = null) {
 /* **************************************
  * Check JWT token middleware
  ************************************** */
-Util.checkJWTToken = (req, res, next) => {
-  const token = req.cookies.jwt
+// Util.checkJWTToken = (req, res, next) => {
+//   const token = req.cookies.jwt
 
-  if (!token) {
-    res.locals.loggedin = false
-    return res.redirect("/account/login")
-  }
+//   if (!token) {
+//     res.locals.loggedin = false
+//     return res.redirect("/account/login")
+//   }
 
-  try {
-    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-    res.locals.loggedin = true
-    res.locals.accountData = decoded
-  } catch (err) {
-    res.clearCookie("jwt")
-    res.locals.loggedin = false
-    return res.redirect("/account/login")
-  }
+//   try {
+//     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+//     res.locals.loggedin = true
+//     res.locals.accountData = decoded
+//   } catch (err) {
+//     res.clearCookie("jwt")
+//     res.locals.loggedin = false
+//     return res.redirect("/account/login")
+//   }
 
-  // next()
-}
+//   // next()
+// }
 
 // Util.checkJWTToken = (req, res, next) => {
 //   // Skip static files and public routes
@@ -155,6 +155,95 @@ Util.checkJWTToken = (req, res, next) => {
 // }
 
 // check step add a "read JWT if it exists" middleware globally
+
+/* **************************************
+ * Set Logged In Status (GLOBAL)
+ **************************************/
+// Util.setLoggedInStatus = (req, res, next) => {
+//   const token = req.cookies.jwt
+
+//   res.locals.loggedin = false
+//   res.locals.accountData = null
+
+//   if (!token) return next()
+
+//   try {
+//     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+//     res.locals.loggedin = true
+//     res.locals.accountData = decoded
+//   } catch (err) {
+//     res.clearCookie("jwt")
+//      res.locals.loggedin = false
+//     res.locals.accountData = null
+//   }
+
+//   next()
+// }
+
+Util.setLoggedInStatus = (req, res, next) => {
+  res.locals.loggedin = false
+  res.locals.accountData = null
+
+  if (req.cookies && req.cookies.jwt) {
+    try {
+      const decoded = jwt.verify(
+        req.cookies.jwt,
+        process.env.ACCESS_TOKEN_SECRET
+      )
+      res.locals.loggedin = true
+      res.locals.accountData = decoded
+    } catch (err) {
+      res.clearCookie("jwt")
+    }
+  }
+  next()
+}
+
+/* **************************************
+ * Require Employee or Admin
+ **************************************/
+// Util.requireEmployeeOrAdmin = (req, res, next) => {
+//   const token = req.cookies.jwt
+
+//   if (!token) {
+//     req.flash("notice", "Please log in to access that page.")
+//     return res.redirect("/account/login")
+//   }
+
+//   try {
+//     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+
+//     if (decoded.account_type !== "Employee" && decoded.account_type !== "Admin") {
+//       req.flash("notice", "You do not have permission to access that page.")
+//       return res.redirect("/account/login")
+//     }
+
+//     // Authorized
+//     res.locals.loggedin = true
+//     res.locals.accountData = decoded
+//     next()
+//   } catch (err) {
+//     res.clearCookie("jwt")
+//     req.flash("notice", "Please log in again.")
+//     return res.redirect("/account/login")
+//   }
+// }
+
+Util.requireEmployeeOrAdmin = (req, res, next) => {
+  if (!res.locals.loggedin) {
+    req.flash("notice", "Please log in to access this area.")
+    return res.redirect("/account/login")
+  }
+
+  const accountType = res.locals.accountData.account_type
+
+  if (accountType === "Employee" || accountType === "Admin") {
+    return next()
+  }
+
+  req.flash("notice", "You do not have permission to access that page.")
+  return res.redirect("/account/login")
+}
 
 
 

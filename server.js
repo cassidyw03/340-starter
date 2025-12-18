@@ -49,7 +49,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 
 // JWT token Middleware
-app.use(utilities.checkJWTToken)
+// app.use(utilities.checkJWTToken)
+
+
+// GLOBAL login awareness (NO redirects)
+app.use(utilities.setLoggedInStatus)
+
 
 // Ensure loggedin is always defined for EJS
 // app.use((req, res, next) => {

@@ -10,3 +10,42 @@
 
 <!-- Vehicle HTML -->
 <%- vehicleHTML %>
+
+
+<% if (reviews.length > 0) { %>
+  <% reviews.forEach(review => { %>
+    <div class="review">
+      <p><strong>
+        <%= review.first_name.charAt(0) + review.last_name %>
+      </strong></p>
+      <p><%= review.review_text %></p>
+      <small>
+        <%= new Date(review.review_date).toLocaleDateString() %>
+      </small>
+    </div>
+  <% }) %>
+<% } else { %>
+  <p>No reviews yet.</p>
+<% } %>
+
+
+<% if (!loggedIn) { %>
+  <p>
+    Please <a href="/account/login">log in</a> to add a review.
+  </p>
+<% } else { %>
+  <form action="/reviews/add" method="post">
+    <label>Review as:</label>
+    <p>
+      <%= accountData.account_firstname.charAt(0) + accountData.account_lastname %>
+    </p>
+
+    <textarea name="review_text" required></textarea>
+
+    <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+    <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+    <button type="submit">Submit Review</button>
+  </form>
+<% } %>
+
