@@ -48,6 +48,17 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // Cookie Parser Middleware
 app.use(cookieParser())
 
+// JWT token Middleware
+app.use(utilities.checkJWTToken)
+
+// Ensure loggedin is always defined for EJS
+// app.use((req, res, next) => {
+//   res.locals.loggedin = false
+//   res.locals.accountData = null
+//   next()
+// })
+
+
 /************************
  * View Engine and Templates
  *************************/

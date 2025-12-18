@@ -34,43 +34,6 @@ async function buildRegistration(req, res, next) {
 /* ****************************************
 *  Process Registration
 * *************************************** */
-// async function registerAccount(req, res) {
-//   let nav = await utilities.getNav()
-//   const { account_firstname, account_lastname, account_email, account_password } = req.body
-
-//   const regResult = await accountModel.registerAccount(
-//     account_firstname,
-//     account_lastname,
-//     account_email,
-//     account_password
-//   )
-
-//   if (regResult) {
-//     req.flash(
-//       "notice",
-//       `Congratulations, you\'re registered ${account_firstname}! Please log in.`)
-//       console.log("registerAccount: regResult true - redirecting to /account/login")
-//     // res.status(201).redirect("account/login")
-//     return res.redirect("/account/login")
-  
-//     // res.status(201).redirect("account/login", {
-//     //   title: "Registration Successful",
-//     //   nav,
-//     //   message: `Welcome, ${account_firstname}! Your account `,
-//     //   notice: req.flash("notice")
-//     // })
-//   } else {
-//     req.flash("notice", "Sorry, the registration failed.")
-//     res.status(501).render("account/registration", {
-//       title: "Registration",
-//       nav,
-//       notice: req.flash("notice"),
-//       errors: null
-//     })
-//   }
-// }
-
-// With try catch and error handling
 async function registerAccount(req, res) {
   let nav = await utilities.getNav()
   const { account_firstname, account_lastname, account_email, account_password } = req.body
@@ -108,71 +71,6 @@ async function registerAccount(req, res) {
 /* ****************************************
  *  Process login request
  * ************************************ */
-// /* ****************************************
-//  *  Process login request
-//  * ************************************ */
-// async function accountLogin(req, res, next) {
-//   let nav = await utilities.getNav()
-//   const { account_email, account_password } = req.body
-
-//   console.log("=== Login Attempt ===")
-//   console.log("Email entered:", account_email)
-
-//   try {
-//     const accountData = await accountModel.getAccountByEmail(account_email)
-//     if (!accountData) {
-//       console.log("Login failed: account not found")
-//       req.flash("notice", "Please check your credentials and try again.")
-//       return res.status(400).render("account/login", {
-//         title: "Login",
-//         nav,
-//         errors: null,
-//         account_email,
-//       })
-//     }
-
-//     console.log("Account found in DB:", accountData)
-
-//     // Compare password
-//     console.log("Comparing entered password with hashed password...")
-//     const passwordMatch = await bcrypt.compare(account_password, accountData.account_password)
-
-//     if (!passwordMatch) {
-//       console.log("Login failed: password does not match")
-//       req.flash("notice", "Please check your credentials and try again.")
-//       return res.status(400).render("account/login", {
-//         title: "Login",
-//         nav,
-//         errors: null,
-//         account_email,
-//       })
-//     }
-
-//     console.log("Password matched! Creating JWT...")
-
-//     // Remove password before signing JWT
-//     delete accountData.account_password
-
-//     // JWT expires in 1 hour (3600000 ms)
-//     const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" })
-
-//     console.log("JWT created:", accessToken)
-
-//     // Set cookie
-//     if (process.env.NODE_ENV === "development") {
-//       res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-//     } else {
-//       res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
-//     }
-
-//     console.log("Cookie set, redirecting to /account/")
-//     return res.redirect("/account/")
-//   } catch (error) {
-//     console.error("Error during login process:", error)
-//     next(error)
-//   }
-// }
-
 async function accountLogin(req, res, next) {
   let nav = await utilities.getNav()
   const { account_email, account_password } = req.body
@@ -228,95 +126,9 @@ async function accountLogin(req, res, next) {
   }
 }
 
-
-// async function accountLogin(req, res, next) {
-//   let nav = await utilities.getNav()
-//   const { account_email, account_password } = req.body
-//   const accountData = await accountModel.getAccountByEmail(account_email)
-//   if (!accountData) {
-//     req.flash("notice", "Please check your credentials and try again.")
-//     res.status(400).render("account/login", {
-//       title: "Login",
-//       nav,
-//       errors: null,
-//       account_email,
-//     })
-//     return
-//   }
-//   try {
-//     if (await bcrypt.compare(account_password, accountData.account_password)) {
-//       delete accountData.account_password
-//       const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
-//       if(process.env.NODE_ENV === 'development') {
-//         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-//       } else {
-//         res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
-//       }
-//       return res.redirect("/account/")
-//     }
-//     else {
-//       req.flash("notice", "Please check your credentials and try again.")
-//       res.status(400).render("account/login", {
-//         title: "Login",
-//         nav,
-//         errors: null,
-//         account_email,
-//       })
-//     }
-//   } catch (error) {
-//     next(error)
-// }
-// }
-
 /* ****************************************
  *  Deliver Account Management View
  * ************************************ */
-// async function buildAccountManagement(req, res, next) {
-//     let nav = await utilities.getNav()
-//     res.render("account/management", {
-//       title: "Account Management",
-//       nav,
-//       errors: null
-//     })
-// }
-
-// With a try catch
-// async function buildAccountManagement(req, res, next) {
-//   try {
-//     let nav = await utilities.getNav()
-//     res.render("account/management", { title: "Account Management", nav, errors: null })
-//   } catch (err) {
-//     console.log("ERROR in buildAccountManagement:", err)
-//     res.status(500).send("Server error")
-//   }
-// }
-
-/* ****************************************
- *  Deliver Account Management View
- * ************************************ */
-// async function buildAccountManagement(req, res, next) {
-//   let nav
-//   try {
-//     nav = await utilities.getNav()
-//   } catch (error) {
-//     console.error("Error getting navigation:", error)
-//     return next(error)
-//   }
-
-//   try {
-//     // Render the management page
-//     res.render("account/management", {
-//       title: "Account Management",
-//       nav,
-//       messages: req.flash("notice") || [],
-//       errors: null
-//     })
-//   } catch (error) {
-//     console.error("Error rendering account management page:", error)
-//     return next(error)
-//   }
-// }
-
 async function buildAccountManagement(req, res, next) {
   let nav
   try {
@@ -339,5 +151,14 @@ async function buildAccountManagement(req, res, next) {
   }
 }
 
+/* ****************************************
+ * Logout account
+ **************************************** */
+async function logout(req, res) {
+  res.clearCookie("jwt")
+  res.redirect("/")
+}
 
-module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildAccountManagement}
+
+
+module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildAccountManagement, logout}

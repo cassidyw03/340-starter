@@ -111,7 +111,7 @@ Util.checkJWTToken = (req, res, next) => {
 
   if (!token) {
     res.locals.loggedin = false
-    return next()
+    return res.redirect("/account/login")
   }
 
   try {
@@ -119,11 +119,45 @@ Util.checkJWTToken = (req, res, next) => {
     res.locals.loggedin = true
     res.locals.accountData = decoded
   } catch (err) {
+    res.clearCookie("jwt")
     res.locals.loggedin = false
+    return res.redirect("/account/login")
   }
 
-  next()
+  // next()
 }
+
+// Util.checkJWTToken = (req, res, next) => {
+//   // Skip static files and public routes
+//   const publicPaths = ["/account/login", "/account/registration", "/account/register"]
+//   const isStatic = req.path.startsWith("/css") || req.path.startsWith("/js") || req.path.startsWith("/images")
+
+//   if (publicPaths.includes(req.path) || isStatic) {
+//     return next()
+//   }
+
+//   const token = req.cookies.jwt
+//   if (!token) {
+//     res.locals.loggedin = false
+//     return res.redirect("/account/login")
+//   }
+
+//   try {
+//     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+//     res.locals.loggedin = true
+//     res.locals.accountData = decoded
+//     next()
+//   } catch (err) {
+//     res.clearCookie("jwt")
+//     res.locals.loggedin = false
+//     return res.redirect("/account/login")
+//   }
+// }
+
+// check step add a "read JWT if it exists" middleware globally
+
+
+
 
 
 module.exports = Util

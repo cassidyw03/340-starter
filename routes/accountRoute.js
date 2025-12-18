@@ -8,6 +8,7 @@ const regValidate = require('../utilities/account-validation')
 // Route to account management route (after successful login)
 router.get(
   "/",
+  utilities.checkJWTToken,
   utilities.handleErrors(accountController.buildAccountManagement)
 )
 
@@ -21,6 +22,11 @@ router.post(
     regValidate.checkLoginData,
     utilities.handleErrors(accountController.accountLogin)
 )
+
+// Logout route
+router.get("/logout",
+  utilities.handleErrors(accountController.logout))
+
 
 // Route to build the registration
 router.get("/registration", utilities.handleErrors(accountController.buildRegistration))

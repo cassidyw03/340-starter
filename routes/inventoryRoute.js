@@ -39,7 +39,7 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 // Route to deliver the edit inventory view
 router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
 
-// ROute to devlier update inventory view
+// Route to devlier update inventory view
 router.post("/update/", 
     invValidation.inventoryRules,
     invValidation.checkUpdateData,
