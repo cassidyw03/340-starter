@@ -264,7 +264,7 @@ invCont.updateInventory = async function (req, res, next) {
 /* ***************************
  * Build Detail View
  * ************************** */
-async function buildDetailView(req, res) {
+invCont.buildDetailView = async function (req, res) {
   const inv_id = req.params.inv_id;
 
   const vehicle = await inventoryModel.getInventoryById(inv_id);
@@ -273,7 +273,7 @@ async function buildDetailView(req, res) {
   res.render("inventory/detail", {
     title: vehicle.inv_make + " " + vehicle.inv_model,
     vehicle,
-    reviews,
+    reviews: reviews.rows,
     loggedIn: res.locals.loggedin,
     accountData: res.locals.accountData
   });

@@ -11,6 +11,7 @@
 <!-- Vehicle HTML -->
 <%- vehicleHTML %>
 
+<h2> Customer Reviews</h2>
 
 <% if (reviews.length > 0) { %>
   <% reviews.forEach(review => { %>
@@ -29,23 +30,25 @@
 <% } %>
 
 
-<% if (!loggedIn) { %>
-  <p>
-    Please <a href="/account/login">log in</a> to add a review.
-  </p>
-<% } else { %>
-  <form action="/reviews/add" method="post">
-    <label>Review as:</label>
-    <p>
-      <%= accountData.account_firstname.charAt(0) + accountData.account_lastname %>
-    </p>
-
-    <textarea name="review_text" required></textarea>
-
+<% if (locals.loggedin) { %>
+  <h3>Add a Review</h3>
+  <form action="/review/add" method="post">
     <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
-    <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+    <label>Rating</label>
+    <select name="review_rating" required>
+      <option value="5">5</option>
+      <option value="4">4</option>
+      <option value="3">3</option>
+      <option value="2">2</option>
+      <option value="1">1</option>
+    </select>
+
+    <label>Review</label>
+    <textarea name="review_text" required></textarea>
 
     <button type="submit">Submit Review</button>
   </form>
 <% } %>
+
 

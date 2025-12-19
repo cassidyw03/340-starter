@@ -1,6 +1,8 @@
 const pool = require("../database/")
 
-// Get all reviews for a specific inventory item (most recent first)
+/* *************************************************
+ *Get all reviews for a specific inventory item (most recent first)
+ * ************************************************* */
 const getReviewsByInventoryId = async (inv_id) => {
     const query = `
         SELECT r.review_id, r.review_text, r.review_date, a.first_name, a.last_name
@@ -13,7 +15,9 @@ const getReviewsByInventoryId = async (inv_id) => {
     return rows;
 };
 
-// Add a new review
+/* *************************************************
+ *  Add new review
+ * ************************************************* */
 const addReview = async (review_text, inv_id, account_id) => {
     const query = `
         INSERT INTO review (review_text, inv_id, account_id)
@@ -36,7 +40,9 @@ const updateReview = async (review_id, review_text) => {
     return rows[0];
 };
 
-// Delete a review
+/* *************************************************
+ *  Delete a review
+ * ************************************************* */
 const deleteReview = async (review_id) => {
     const query = `
         DELETE FROM review
@@ -45,7 +51,9 @@ const deleteReview = async (review_id) => {
     await db.query(query, [review_id]);
 };
 
-// Get review by id
+/* *************************************************
+ *  Get review by ID
+ * ************************************************* */
 const getReviewById = async (review_id) => {
   const sql = `
     SELECT * FROM review

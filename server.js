@@ -18,6 +18,8 @@ const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const reviewRoute = require("./routes/reviewRoutes")
+
 
 /* ***********************
  * Middleware
@@ -85,6 +87,9 @@ app.use("/inv", inventoryRoute)
 
 // Account route
 app.use("/account", accountRoute)
+
+// Review route
+app.use("/review", reviewRoute)
 
 // File Not Found Route- must be LAST ROUTE in list
 app.use(async (req, res, next) => {

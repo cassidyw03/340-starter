@@ -202,33 +202,6 @@ Util.setLoggedInStatus = (req, res, next) => {
 /* **************************************
  * Require Employee or Admin
  **************************************/
-// Util.requireEmployeeOrAdmin = (req, res, next) => {
-//   const token = req.cookies.jwt
-
-//   if (!token) {
-//     req.flash("notice", "Please log in to access that page.")
-//     return res.redirect("/account/login")
-//   }
-
-//   try {
-//     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-
-//     if (decoded.account_type !== "Employee" && decoded.account_type !== "Admin") {
-//       req.flash("notice", "You do not have permission to access that page.")
-//       return res.redirect("/account/login")
-//     }
-
-//     // Authorized
-//     res.locals.loggedin = true
-//     res.locals.accountData = decoded
-//     next()
-//   } catch (err) {
-//     res.clearCookie("jwt")
-//     req.flash("notice", "Please log in again.")
-//     return res.redirect("/account/login")
-//   }
-// }
-
 Util.requireEmployeeOrAdmin = (req, res, next) => {
   if (!res.locals.loggedin) {
     req.flash("notice", "Please log in to access this area.")
@@ -244,9 +217,6 @@ Util.requireEmployeeOrAdmin = (req, res, next) => {
   req.flash("notice", "You do not have permission to access that page.")
   return res.redirect("/account/login")
 }
-
-
-
 
 
 module.exports = Util
