@@ -11,7 +11,7 @@ router.get("/type/:classificationId",
     utilities.handleErrors(invController.buildByClassificationId))
 
 // Route to build vehicle detail route
-router.get("/detail/:inv_id", utilities.handleErrors(invController.buildVehicleDetail))
+router.get("/detail/:inv_id", utilities.handleErrors(invController.buildDetailView))
 
 // Route to build management view route
 router.get("/", utilities.handleErrors,
@@ -50,7 +50,7 @@ router.get("/edit/:inv_id",
     utilities.requireEmployeeOrAdmin,
     utilities.handleErrors(invController.buildEditInventory))
 
-// Route to devlier update inventory view
+// Route to deliver update inventory view
 router.post("/update/", 
     invValidation.inventoryRules(),
     invValidation.checkUpdateData,
